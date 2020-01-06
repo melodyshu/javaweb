@@ -17,7 +17,13 @@ public final class IocHelper {
                 Field[] beanFields = beanClass.getDeclaredFields();
                 if(ArrayUtils.isNotEmpty(beanFields)){
                     for (Field beanField : beanFields) {
-                        
+                        if(beanField.isAnnotationPresent(MyInject.class)){
+                            Class<?> beanFieldClass= beanField.getType();
+                            Object beanFieldInstance= beanMap.get(beanFieldClass);
+                            if (beanFieldInstance != null){
+                                ReflectionUtil.setField(beanInstance,beanField,beanFieldInstance);
+                            }
+                        }
                     }
                 }
             }
