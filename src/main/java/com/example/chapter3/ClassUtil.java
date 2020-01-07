@@ -48,7 +48,7 @@ public final class ClassUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       return null;
+       return classSet;
     }
 
     private static void addClass(Set<Class<?>> classSet, String packagePath, String packageName) {
